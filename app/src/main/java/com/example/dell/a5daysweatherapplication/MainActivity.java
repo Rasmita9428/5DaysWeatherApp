@@ -1,13 +1,10 @@
 package com.example.dell.a5daysweatherapplication;
 
 import android.Manifest;
-import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -67,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 str_currentlatitude = String.valueOf(gpsTracker.getLatitude());
                 str_currentlongitude = String.valueOf(gpsTracker.getLongitude());
                 Toast.makeText(MainActivity.this, str_currentlatitude + str_currentlongitude, Toast.LENGTH_SHORT).show();
+                Log.e("current", str_currentlatitude);
             }
         } else
             str_currentlatitude = String.valueOf(gpsTracker.getLatitude());
