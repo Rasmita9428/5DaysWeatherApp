@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
+        android:id="@+id/rl_mainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -28,6 +29,7 @@
                 android:id="@+id/updated_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/txt_white"
                 android:textSize="14dp" />
         </LinearLayout>
 
@@ -42,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="@color/txt_white"
                 android:fontFamily="sans-serif-thin"
                 android:textSize="90dp" />
 
@@ -128,6 +131,7 @@
                         android:id="@+id/txtsunset"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/txt_white"
                         android:textSize="14dp" />
                 </LinearLayout>
 
