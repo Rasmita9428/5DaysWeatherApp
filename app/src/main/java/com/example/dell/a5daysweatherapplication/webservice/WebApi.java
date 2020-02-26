@@ -1,6 +1,7 @@
 package com.example.dell.a5daysweatherapplication.webservice;
 
 import com.example.dell.a5daysweatherapplication.model.Example;
+import com.example.dell.a5daysweatherapplication.model.weekweather.WeekWeather;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,4 +15,9 @@ public interface WebApi {
                                       @Query("lon") String lon,
                                       @Query("appid") String appid,
                                       @Query("units") String units);
+
+    @GET("forecast")
+    Call<WeekWeather> callWeekweatherByLatLng(@Query("lat") String lat,
+                                              @Query("lon") String lon,
+                                              @Query("appid") String appid);
 }

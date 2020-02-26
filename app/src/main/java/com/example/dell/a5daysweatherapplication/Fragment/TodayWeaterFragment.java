@@ -2,6 +2,7 @@ package com.example.dell.a5daysweatherapplication.Fragment;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -51,7 +52,6 @@ public class TodayWeaterFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        TodayWeather();
         return inflater.inflate(R.layout.fragment_today_weater, container, false);
 
     }
@@ -111,14 +111,14 @@ public class TodayWeaterFragment extends BaseFragment {
 
     private void TodayWeather() {
 
-//            final ProgressDialog progressDialog = new ProgressDialog(context);
-//            progressDialog.setMessage("Please Wait...");
-//            progressDialog.show();
+        final ProgressDialog progressDialog = new ProgressDialog(mContext);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.show();
 
         WebApiClient.getInstance(mContext).getWebApi().callweatherByLatLng(str_currentlatitude, str_currentlongitude, API, "metric").enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
-
+                progressDialog.dismiss();
                 if (response.code() == 200) {
 
                     txtCity.setText(response.body().getName());
@@ -137,6 +137,7 @@ public class TodayWeaterFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<Example> call, Throwable throwable) {
+                progressDialog.dismiss();
             }
         });
     }

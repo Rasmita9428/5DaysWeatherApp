@@ -4,10 +4,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.dell.a5daysweatherapplication.Fragment.WeekweatherFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_weektemp_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:isScrollContainer="false"
+        android:scrollbars="horizontal" />
 </FrameLayout>
