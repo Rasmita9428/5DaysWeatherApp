@@ -10,15 +10,14 @@ public class WeekWeather {
     private String cod;
     private Double message;
     private Integer cnt;
-    private java.util.List<MyList> list;
+    private MyList[] list;
     private City city;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public static java.util.List<MyList> getList() {
-        return getList();
-    }
+    public MyList[] getList() { return list; }
 
-    public void setList(java.util.List<MyList> list) {
+
+    public void setList(MyList[] list) {
         this.list = list;
     }
 

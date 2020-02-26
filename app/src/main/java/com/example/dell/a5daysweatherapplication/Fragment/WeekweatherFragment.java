@@ -29,9 +29,6 @@ import com.example.dell.a5daysweatherapplication.model.weekweather.MyList;
 import com.example.dell.a5daysweatherapplication.model.weekweather.WeekWeather;
 import com.example.dell.a5daysweatherapplication.webservice.WebApiClient;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,7 +42,7 @@ public class WeekweatherFragment extends BaseFragment {
     String str_currentlongitude = "";
     WeekweatherAdapter adapter;
     String City;
-    List<MyList> weekWeatherMyList = new ArrayList<>();
+    MyList[] weekWeatherMyList ;
     String API = "02e24deaa9fa3286feaeead84040b350";
     TextView txtCity, updated_time, txttemp, weather;
     GPSTracker gpsTracker;
@@ -65,7 +62,13 @@ public class WeekweatherFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        txtCity=view.findViewById(R.id.txt_city);
         recycler_weektemp_list = view.findViewById(R.id.recycler_weektemp_list);
+        recycler_weektemp_list.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
+        recycler_weektemp_list.setLayoutManager(mLayoutManager);
+        recycler_weektemp_list.setItemAnimator(new DefaultItemAnimator());
+
         checkPermission();
         WeekWeather();
     }
@@ -103,7 +106,7 @@ public class WeekweatherFragment extends BaseFragment {
 
     private void requestPermissions() {
         ActivityCompat.requestPermissions(
-                CommonKeys.mActivity,
+                mActivity,
                 new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
                 CommonKeys.PERMISSION_CODE
         );
@@ -115,19 +118,16 @@ public class WeekweatherFragment extends BaseFragment {
         progressDialog.setMessage("Please Wait...");
         progressDialog.show();
 
-        WebApiClient.getInstance(mContext).getWebApi().callWeekweatherByLatLng(str_currentlatitude, str_currentlongitude, API).enqueue(new Callback<WeekWeather>() {
+        WebApiClient.getInstance(mContext).getWebApi().callWeekweatherByLatLng(str_currentlatitude, str_currentlongitude, API,"metric").enqueue(new Callback<WeekWeather>() {
             @Override
             public void onResponse(Call<WeekWeather> call, Response<WeekWeather> response) {
                 progressDialog.dismiss();
                 if (response.code() == 200) {
-                    City = response.body().getCity().getName();
+                    txtCity.setText("5 Days Weather of "+response.body().getCity().getName());
                     weekWeatherMyList = response.body().getList();
                     Log.e("WeekWeather", weekWeatherMyList.toString());
                     //Recycerview Featured Store
-                    adapter = new WeekweatherAdapter(weekWeatherMyList, City);
-                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
-                    recycler_weektemp_list.setLayoutManager(mLayoutManager);
-                    recycler_weektemp_list.setItemAnimator(new DefaultItemAnimator());
+                    adapter = new WeekweatherAdapter(weekWeatherMyList, City,mContext);
                     recycler_weektemp_list.setAdapter(adapter);
                     recycler_weektemp_list.setNestedScrollingEnabled(false);
                 } else {

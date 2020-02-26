@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.example.dell.a5daysweatherapplication.GPSTracker;
 import com.example.dell.a5daysweatherapplication.R;
 import com.example.dell.a5daysweatherapplication.model.Example;
 import com.example.dell.a5daysweatherapplication.webservice.WebApiClient;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,6 +44,7 @@ public class TodayWeaterFragment extends BaseFragment {
     String API = "02e24deaa9fa3286feaeead84040b350";
     TextView txtCity, updated_time, txttemp, weather;
     GPSTracker gpsTracker;
+    ImageView image;
 
     public TodayWeaterFragment() {
         // Required empty public constructor
@@ -63,8 +66,7 @@ public class TodayWeaterFragment extends BaseFragment {
         updated_time = view.findViewById(R.id.updated_time);
         txttemp = view.findViewById(R.id.txttemp);
         weather = view.findViewById(R.id.weather);
-
-
+        image = view.findViewById(R.id.image);
         checkPermission();
         TodayWeather();
     }
@@ -102,7 +104,7 @@ public class TodayWeaterFragment extends BaseFragment {
 
     private void requestPermissions() {
         ActivityCompat.requestPermissions(
-                CommonKeys.mActivity,
+                mActivity,
                 new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
                 CommonKeys.PERMISSION_CODE
         );
@@ -125,9 +127,9 @@ public class TodayWeaterFragment extends BaseFragment {
                     weather.setText(response.body().getWeather().get(0).getDescription());
                     // updated_time.setText(response.body().get());
                     Long updatedAt = Long.valueOf(response.body().getDt());
-                    updated_time.setText("Updated at: " + new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(new Date(updatedAt * 1000)));
+                    updated_time.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(new Date(updatedAt * 1000)));
                     txttemp.setText(response.body().getMain().getTemp().toString() + "°C");
-
+                    Picasso.with(mContext).load(new StringBuffer("https://openweathermap.org/img/w/").append(response.body().getWeather().get(0).getIcon()).append(".png").toString()).into(image);
 
                     Log.e("data", "onResponse: " + response.body().getCoord().getLat().toString());
                 } else {

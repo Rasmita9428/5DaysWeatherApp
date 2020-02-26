@@ -20,76 +20,63 @@
             android:orientation="vertical"
             tools:context=".MainActivity">
 
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/updated_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txtCity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:text=""
-                    android:textColor="@color/txt_white"
-                    android:textSize="@dimen/_21sdp" />
-
-                <TextView
-                    android:id="@+id/updated_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/txt_white"
-                    android:textSize="@dimen/_10sdp" />
-            </LinearLayout>
+                android:text="12/2"
+                android:textColor="@color/txt_white"
+                android:textSize="@dimen/_13sdp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txttemp"
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_10sdp" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="sans-serif-thin"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="@color/txt_white"
-                    android:textSize="@dimen/_40sdp" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/weather"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/txt_white"
-                    android:textSize="@dimen/_14sdp" />
+                    <TextView
+                        android:id="@+id/txttemp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="start"
+                        android:text="10degree"
+                        android:textColor="@color/txt_white"
+                        android:textSize="@dimen/_27sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:text="amd"
+                        android:textColor="@color/txt_white"
+                        android:textSize="@dimen/_18sdp" />
+
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/loader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/errorText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Something went wrong"
-            android:visibility="gone" />
 
     </android.support.v7.widget.CardView>
 

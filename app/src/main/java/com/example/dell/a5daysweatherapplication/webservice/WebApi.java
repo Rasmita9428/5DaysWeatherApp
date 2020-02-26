@@ -19,5 +19,7 @@ public interface WebApi {
     @GET("forecast")
     Call<WeekWeather> callWeekweatherByLatLng(@Query("lat") String lat,
                                               @Query("lon") String lon,
-                                              @Query("appid") String appid);
+                                              @Query("appid") String appid,
+                                              @Query("units") String units);
+
 }
