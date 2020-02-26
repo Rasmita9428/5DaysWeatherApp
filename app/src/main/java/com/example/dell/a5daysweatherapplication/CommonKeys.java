@@ -6,8 +6,9 @@ package com.example.dell.a5daysweatherapplication;
  */
 
 public class CommonKeys {
-
+    public static MainActivity mActivity;
     public static final int PERMISSION_CODE = 123;
     public static String API = "02e24deaa9fa3286feaeead84040b350";
+
 
 }
