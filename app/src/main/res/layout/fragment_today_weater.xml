@@ -34,7 +34,7 @@
                     android:layout_margin="@dimen/_5sdp"
                     android:text=""
                     android:textColor="@color/txt_white"
-                    android:textSize="@dimen/_20sdp" />
+                    android:textSize="@dimen/_21sdp" />
 
                 <TextView
                     android:id="@+id/updated_time"
