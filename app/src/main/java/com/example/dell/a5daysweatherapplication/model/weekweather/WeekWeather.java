@@ -1,7 +1,6 @@
 
 package com.example.dell.a5daysweatherapplication.model.weekweather;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,15 +10,15 @@ public class WeekWeather {
     private String cod;
     private Double message;
     private Integer cnt;
-    private ArrayList<com.example.dell.a5daysweatherapplication.model.weekweather.List> list = new ArrayList<>();
+    private java.util.List<MyList> list;
     private City city;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public static ArrayList<com.example.dell.a5daysweatherapplication.model.weekweather.List> getList() {
+    public static java.util.List<MyList> getList() {
         return getList();
     }
 
-    public void setList(ArrayList<com.example.dell.a5daysweatherapplication.model.weekweather.List> list) {
+    public void setList(java.util.List<MyList> list) {
         this.list = list;
     }
 

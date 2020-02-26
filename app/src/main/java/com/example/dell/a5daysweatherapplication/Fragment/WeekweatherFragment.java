@@ -25,6 +25,7 @@ import com.example.dell.a5daysweatherapplication.Comman_Method;
 import com.example.dell.a5daysweatherapplication.CommonKeys;
 import com.example.dell.a5daysweatherapplication.GPSTracker;
 import com.example.dell.a5daysweatherapplication.R;
+import com.example.dell.a5daysweatherapplication.model.weekweather.MyList;
 import com.example.dell.a5daysweatherapplication.model.weekweather.WeekWeather;
 import com.example.dell.a5daysweatherapplication.webservice.WebApiClient;
 
@@ -44,7 +45,7 @@ public class WeekweatherFragment extends BaseFragment {
     String str_currentlongitude = "";
     WeekweatherAdapter adapter;
     String City;
-    List<com.example.dell.a5daysweatherapplication.model.weekweather.List> WeekWeatherList = new ArrayList<>();
+    List<MyList> weekWeatherMyList = new ArrayList<>();
     String API = "02e24deaa9fa3286feaeead84040b350";
     TextView txtCity, updated_time, txttemp, weather;
     GPSTracker gpsTracker;
@@ -120,11 +121,10 @@ public class WeekweatherFragment extends BaseFragment {
                 progressDialog.dismiss();
                 if (response.code() == 200) {
                     City = response.body().getCity().getName();
-                    WeekWeatherList = response.body().getList();
-                    Log.e("WeekWeather", WeekWeatherList.toString());
+                    weekWeatherMyList = response.body().getList();
+                    Log.e("WeekWeather", weekWeatherMyList.toString());
                     //Recycerview Featured Store
-                    WeekWeatherList = WeekWeather.getList();
-                    adapter = new WeekweatherAdapter(WeekWeatherList, City);
+                    adapter = new WeekweatherAdapter(weekWeatherMyList, City);
                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
                     recycler_weektemp_list.setLayoutManager(mLayoutManager);
                     recycler_weektemp_list.setItemAnimator(new DefaultItemAnimator());

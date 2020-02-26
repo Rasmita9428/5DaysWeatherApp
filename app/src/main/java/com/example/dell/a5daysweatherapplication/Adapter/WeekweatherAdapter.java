@@ -10,15 +10,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.dell.a5daysweatherapplication.R;
+import com.example.dell.a5daysweatherapplication.model.weekweather.MyList;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class WeekweatherAdapter extends RecyclerView.Adapter {
-    List<com.example.dell.a5daysweatherapplication.model.weekweather.List> weekWeatherList;
+    List<MyList> weekWeatherMyList;
     String City;
 
-    public WeekweatherAdapter(List<com.example.dell.a5daysweatherapplication.model.weekweather.List> weekWeatherList, String City) {
-        this.weekWeatherList = weekWeatherList;
+    public WeekweatherAdapter(List<MyList> weekWeatherMyList, String City) {
+        this.weekWeatherMyList = weekWeatherMyList;
         this.City = City;
     }
 
@@ -40,17 +44,17 @@ public class WeekweatherAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
 
-        if (weekWeatherList.get(position) != null) {
+        if (weekWeatherMyList.get(position) != null) {
 
             final WeekWeatherHolder WeekWeatherHolder = (WeekWeatherHolder) holder;
 
 
             WeekWeatherHolder.txtCity.setText(City);
-//            WeekWeatherHolder.weather.setText(response.body().getWeather().get(0).getDescription());
-//            // updated_time.setText(response.body().get());
-//            Long updatedAt = Long.valueOf(response.body().getDt());
-//            WeekWeatherHolder.updated_time.setText("Updated at: " + new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(new Date(updatedAt * 1000)));
-//            WeekWeatherHolder.txttemp.setText(response.body().getMain().getTemp().toString() + "°C");
+            WeekWeatherHolder.weather.setText(weekWeatherMyList.get(position).getWeather().get(0).getDescription());
+            // updated_time.setText(response.body().get());
+            Long updatedAt = Long.valueOf(weekWeatherMyList.get(position).getDt());
+            WeekWeatherHolder.updated_time.setText("Updated at: " + new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(new Date(updatedAt * 1000)));
+            WeekWeatherHolder.txttemp.setText(weekWeatherMyList.get(position).getMain().getTemp().toString() + "°C");
 
 
         }
@@ -59,11 +63,11 @@ public class WeekweatherAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return weekWeatherList.size();
+        return weekWeatherMyList.size();
     }
 
-    public void updateData(List<com.example.dell.a5daysweatherapplication.model.weekweather.List> notesLists) {
-        this.weekWeatherList = notesLists;
+    public void updateData(List<MyList> notesMyLists) {
+        this.weekWeatherMyList = notesMyLists;
         notifyDataSetChanged();
     }
 

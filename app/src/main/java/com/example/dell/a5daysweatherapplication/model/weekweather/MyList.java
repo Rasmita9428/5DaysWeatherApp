@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class List {
+public class MyList {
 
     private Integer dt;
     private Main main;
